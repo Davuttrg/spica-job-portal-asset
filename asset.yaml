@@ -327,6 +327,7 @@ metadata:
 spec:
   language: javascript
   timeout: 6
+  description: Authorization process
   environment:
     - name: USER_BUCKET_ID
       valueFrom:
