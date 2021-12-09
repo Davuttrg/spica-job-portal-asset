@@ -11,9 +11,6 @@ Identity.initialize({ apikey: IDENTITIY_SECRET_KEY });
 
 export async function register(req, res) {
     let { user_data } = req.body;
-    console.log("userdata :", user_data)
-    console.log("registiration start with this parameter : ", user_data);
-
     if (user_data.email && user_data.password) {
         let identity = await Identity.insert({
             identifier: user_data.email,
