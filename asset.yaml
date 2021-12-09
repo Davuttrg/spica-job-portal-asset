@@ -1,0 +1,342 @@
+# BUCKET - User
+apiVersion: bucket/v1
+kind: Schema
+metadata:
+  name: spica-job-portal-asset-user-bucket
+spec:
+  title: User
+  description: User Bucket
+  icon: view_stream
+  primary: name
+  readOnly: false
+  history: false
+  properties:
+    name:
+      type: string
+      title: name
+      description: |
+        name of user
+      options:
+        position: bottom
+    surname:
+      type: string
+      title: surname
+      description: |
+        Surname of user
+      options:
+        position: bottom
+    username:
+      type: string
+      title: username
+      description: |
+        Username of user
+      options:
+        position: bottom
+    email:
+      type: string
+      title: email
+      description: Description of the email input
+      options:
+        position: bottom
+    identity:
+      type: string
+      title: identity
+      description: Description of the identity input
+      options:
+        position: bottom
+    number:
+      type: string
+      title: number
+      description: Number of user
+      options:
+        position: bottom
+    profile_picture:
+      type: storage
+      title: profile_picture
+      description: Description of the profile_picture input
+      options:
+        position: bottom
+    created_at:
+      type: date
+      title: created_at
+      description: Description of the created_at input
+      options:
+        position: bottom
+      default: :created_at
+    saved_jobs:
+      type: relation
+      title: saved_jobs
+      description: Description of the saved_jobs input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      primary: header
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-job-portal-asset-job-advert-bucket
+    applied_jobs:
+      type: relation
+      title: applied_jobs
+      description: Description of the applied_jobs input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      primary: header
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-job-portal-asset-job-advert-bucket
+    companies:
+      type: relation
+      title: companies
+      description: Description of the companies input
+      options:
+        position: bottom
+      relationType: onetomany
+      dependent: false
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-job-portal-asset-company-bucket
+  acl:
+    write: true==true
+    read: true==true
+  order: 2
+---
+# BUCKET - Company
+apiVersion: bucket/v1
+kind: Schema
+metadata:
+  name: spica-job-portal-asset-company-bucket
+spec:
+  title: Company
+  description: Describe your new bucket
+  icon: view_stream
+  primary: title
+  readOnly: false
+  history: false
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title of the row
+      options:
+        position: left
+    logo:
+      type: storage
+      title: logo
+      description: Description of the logo input
+      options:
+        position: right
+    cover_photo:
+      type: storage
+      title: cover_photo
+      description: Description of the cover_photo input
+      options:
+        position: right
+    web_site:
+      type: string
+      title: web_site
+      description: Description of the web_site input
+      options:
+        position: left
+    address:
+      type: object
+      title: address
+      description: Description of the address input
+      options:
+        position: left
+      properties:
+        country:
+          type: string
+          title: country
+          description: Description of the country input
+          options:
+            position: bottom
+        city:
+          type: string
+          title: city
+          description: Description of the city input
+          options:
+            position: bottom
+    foundation_date:
+      type: date
+      title: foundation_date
+      description: Description of the foundation_date input
+      options:
+        position: left
+      default: :created_at
+    description:
+      type: textarea
+      title: description
+      description: Description of the description input
+      options:
+        position: bottom
+  acl:
+    write: true==true
+    read: true==true
+  order: 4
+---
+# BUCKET - Job Advert
+apiVersion: bucket/v1
+kind: Schema
+metadata:
+  name: spica-job-portal-asset-job-advert-bucket
+spec:
+  title: Job Advert
+  description: Describe your new bucket
+  icon: view_stream
+  primary: header
+  readOnly: false
+  history: false
+  properties:
+    header:
+      type: string
+      title: header
+      description: Description of the header input
+      options:
+        position: bottom
+    description:
+      type: richtext
+      title: description
+      description: Description of the description input
+      options:
+        position: bottom
+    company:
+      type: relation
+      title: company
+      description: Description of the company input
+      options:
+        position: bottom
+      relationType: onetoone
+      dependent: false
+      primary: title
+      bucket:
+        resourceFieldRef:
+          schemaName: spica-job-portal-asset-company-bucket
+    criterias:
+      type: object
+      title: criterias
+      description: Description of the criterias input
+      options:
+        position: bottom
+      properties:
+        education_status:
+          type: multiselect
+          title: education_status
+          description: Description of the education_status input
+          options:
+            position: bottom
+          items:
+            type: string
+            enum:
+              - primary_education
+              - high_school
+              - associate_degree
+              - bachelor_degree
+              - master_degree
+        experience:
+          type: multiselect
+          title: experience
+          description: Description of the experience input
+          options:
+            position: bottom
+          items:
+            type: string
+            enum:
+              - at_last_1_year
+              - at_last_2_year
+              - at_last_3_year
+              - at_last_5_year
+        sector:
+          type: multiselect
+          title: sector
+          description: Description of the sector input
+          options:
+            position: bottom
+          items:
+            type: string
+            enum:
+              - it
+              - security
+              - food
+              - automotive
+              - tourism
+        department:
+          type: multiselect
+          title: department
+          description: Description of the department input
+          options:
+            position: bottom
+          items:
+            type: string
+            enum:
+              - computing
+              - education
+              - finance
+              - sales
+              - marketing
+        position:
+          type: multiselect
+          title: position
+          description: Description of the position input
+          options:
+            position: bottom
+          items:
+            type: string
+            enum:
+              - senior_manager
+              - executive_candidate
+              - expert
+              - intern
+    created_at:
+      type: date
+      title: created_at
+      description: Description of the created_at input
+      options:
+        position: bottom
+      default: :created_at
+  acl:
+    write: true==true
+    read: true==true
+  order: 5
+---
+# FUNCTION - Job Portal Authorization
+apiVersion: function/v1
+kind: Function
+metadata:
+  name: spica-job-portal-asset-job-portal-authorization-function
+spec:
+  language: javascript
+  timeout: 6
+  environment:
+    - name: USER_BUCKET_ID
+      value: 6166d4ae8660a6002e594a6b
+    - name: IDENTITIY_SECRET_KEY
+      value: 7i1rj19kwoyi151
+    - name: SECRET_API_KEY
+      value: 7i1rj19kwoyiiqi
+  dependency:
+    - name: "@spica-devkit/bucket"
+      version: ^0.9.12
+    - name: "@spica-devkit/identity"
+      version: ^0.9.12
+  title: Job Portal Authorization
+  code: ./function/spica-job-portal-asset-job-portal-authorization-function.js
+  runtime:
+    name: Node
+    language: Javascript
+---
+# TRIGGER - register
+apiVersion: function/v1
+kind: Trigger
+metadata:
+  name: register
+spec:
+  type: http
+  active: true
+  name: register
+  func: spica-job-portal-asset-job-portal-authorization-function
+  httpOptions:
+    method: Post
+    path: /register
