@@ -305,7 +305,7 @@ spec:
 apiVersion: function/v1
 kind: Function
 metadata:
-  name: spica-job-portal-asset-job-portal-authorization-function
+  name: spica-job-portal-asset-authorization-function
 spec:
   language: javascript
   timeout: 6
@@ -322,7 +322,7 @@ spec:
     - name: "@spica-devkit/identity"
       version: ^0.9.12
   title: Job Portal Authorization
-  code: ./function/spica-job-portal-asset-job-portal-authorization-function.js
+  code: ./function/spica-job-portal-asset-authorization-function.js
   runtime:
     name: Node
     language: Javascript
@@ -336,7 +336,7 @@ spec:
   type: http
   active: true
   name: register
-  func: spica-job-portal-asset-job-portal-authorization-function
+  func: spica-job-portal-asset-authorization-function
   httpOptions:
     method: Post
     path: /register
