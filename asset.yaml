@@ -6,7 +6,7 @@ metadata:
 spec:
   title: User
   description: User Bucket
-  icon: view_stream
+  icon: work
   primary: name
   readOnly: false
   history: false
@@ -35,9 +35,9 @@ spec:
       description: Description of the email input
       options:
         position: bottom
-    identity:
+    identity_id:
       type: string
-      title: identity
+      title: identity_id
       description: Description of the identity input
       options:
         position: bottom
@@ -108,7 +108,7 @@ metadata:
 spec:
   title: Company
   description: Describe your new bucket
-  icon: view_stream
+  icon: work
   primary: title
   readOnly: false
   history: false
@@ -182,7 +182,7 @@ metadata:
 spec:
   title: Job Advert
   description: Describe your new bucket
-  icon: view_stream
+  icon: work
   primary: header
   readOnly: false
   history: false
